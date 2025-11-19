@@ -78,7 +78,6 @@ namespace Editor.NisGab
             StringBuilder sb = new();
             
             sb.Append(CreateHeader(assetName));
-            sb.AppendLine("\nusing UnityEngine;\n");
             sb.AppendLine("namespace " + OutputNamespace);
             sb.AppendLine("{");
             sb.AppendLine("\tpublic class InputEvent : LazySingleton<InputEvent>");
@@ -96,7 +95,7 @@ namespace Editor.NisGab
             sb.AppendLine("\t\t{");
             sb.AppendLine("\t\t\tbase.Awake();");
             sb.AppendLine("\t\t\tInitialize();");
-            sb.AppendLine("\t\t\tApplication.quitting += OnApplicationQuit;");
+            sb.AppendLine("\t\t\tUnityEngine.Application.quitting += OnApplicationQuit;");
             sb.AppendLine("\t\t}");
             sb.AppendLine("");
             sb.AppendLine("\t\tprivate void OnDestroy()");
