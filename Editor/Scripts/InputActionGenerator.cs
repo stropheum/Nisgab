@@ -95,6 +95,7 @@ namespace Editor.NisGab
             sb.AppendLine("\t\t{");
             sb.AppendLine("\t\t\tbase.Awake();");
             sb.AppendLine("\t\t\tInitialize();");
+            sb.AppendLine("\t\t\tApplication.quitting += OnApplicationQuit;");
             sb.AppendLine("\t\t}");
             sb.AppendLine("");
             sb.AppendLine("\t\tprivate void OnDestroy()");
@@ -122,6 +123,7 @@ namespace Editor.NisGab
 
             sb.AppendLine("\t\tprivate void Initialize()");
             sb.AppendLine("\t\t{");
+            sp.AppendLIne("\t\t\tDontDestroyOnLoad(gameObject);");
             sb.AppendLine("\t\t\t_" + assetVariableName + " = new " + assetName + "();");
             foreach (InputActionMap inputActionMap in inputActionMaps)
             {
