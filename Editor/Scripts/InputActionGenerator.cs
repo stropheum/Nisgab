@@ -123,7 +123,7 @@ namespace Editor.NisGab
 
             sb.AppendLine("\t\tprivate void Initialize()");
             sb.AppendLine("\t\t{");
-            sp.AppendLIne("\t\t\tDontDestroyOnLoad(gameObject);");
+            sb.AppendLIne("\t\t\tDontDestroyOnLoad(gameObject);");
             sb.AppendLine("\t\t\t_" + assetVariableName + " = new " + assetName + "();");
             foreach (InputActionMap inputActionMap in inputActionMaps)
             {
