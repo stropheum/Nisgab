@@ -78,7 +78,7 @@ namespace Editor.NisGab
             StringBuilder sb = new();
             
             sb.Append(CreateHeader(assetName));
-            sb.AppendLine("using UnityEngine;");
+            sb.AppendLine("\nusing UnityEngine;\n");
             sb.AppendLine("namespace " + OutputNamespace);
             sb.AppendLine("{");
             sb.AppendLine("\tpublic class InputEvent : LazySingleton<InputEvent>");
