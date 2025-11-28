@@ -80,7 +80,7 @@ namespace Editor.NisGab
             sb.Append(CreateHeader(assetName));
             sb.AppendLine("namespace " + OutputNamespace);
             sb.AppendLine("{");
-            sb.AppendLine("\tpublic class InputEventBus : LazySingleton<EventBus>");
+            sb.AppendLine("\tpublic class InputEventBus : LazySingleton<InputEventBus>");
             sb.AppendLine("\t{");
             foreach (InputActionMap inputActionMap in inputActionMaps)
             {
@@ -159,7 +159,7 @@ namespace Editor.NisGab
 
             if (!Directory.Exists(targetDirectory)) { Directory.CreateDirectory(targetDirectory); }
 
-            string filePath = Path.Combine(targetDirectory, "EventBus.cs");
+            string filePath = Path.Combine(targetDirectory, "InputEventBus.cs");
 
             File.WriteAllText(filePath, sb.ToString().Replace("\r\n", "\n"), Encoding.UTF8);
             AssetDatabase.Refresh();
