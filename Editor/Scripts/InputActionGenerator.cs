@@ -80,7 +80,7 @@ namespace Editor.NisGab
             sb.Append(CreateHeader(assetName));
             sb.AppendLine("namespace " + OutputNamespace);
             sb.AppendLine("{");
-            sb.AppendLine("\tpublic class EventBus : LazySingleton<EventBus>");
+            sb.AppendLine("\tpublic class InputEventBus : LazySingleton<EventBus>");
             sb.AppendLine("\t{");
             foreach (InputActionMap inputActionMap in inputActionMaps)
             {
