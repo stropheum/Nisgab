@@ -80,7 +80,7 @@ namespace Editor.NisGab
             sb.Append(CreateHeader(assetName));
             sb.AppendLine("namespace " + OutputNamespace);
             sb.AppendLine("{");
-            sb.AppendLine("\tpublic class InputEvent : LazySingleton<InputEvent>");
+            sb.AppendLine("\tpublic class EventBus : LazySingleton<EventBus>");
             sb.AppendLine("\t{");
             foreach (InputActionMap inputActionMap in inputActionMaps)
             {
@@ -94,13 +94,18 @@ namespace Editor.NisGab
             sb.AppendLine("\t\tprotected override void Awake()");
             sb.AppendLine("\t\t{");
             sb.AppendLine("\t\t\tbase.Awake();");
-            sb.AppendLine("\t\t\tInitialize();");
+            sb.AppendLine("\t\t\tInitializeInternal();");
             sb.AppendLine("\t\t\tUnityEngine.Application.quitting += OnApplicationQuit;");
             sb.AppendLine("\t\t}");
             sb.AppendLine("");
             sb.AppendLine("\t\tprivate void OnDestroy()");
             sb.AppendLine("\t\t{");
             sb.AppendLine("\t\t\tUnInitialize();");
+            sb.AppendLine("\t\t}");
+            sb.AppendLine("");
+            sb.AppendLine("\t\tpublic static void Initialize()");
+            sb.AppendLine("\t\t{");
+            sb.AppendLine("\t\t\tvar _ = Instance;");
             sb.AppendLine("\t\t}");
             sb.AppendLine("");
 
@@ -127,7 +132,7 @@ namespace Editor.NisGab
                 sb.AppendLine("");
             }
 
-            sb.AppendLine("\t\tprivate void Initialize()");
+            sb.AppendLine("\t\tprivate void InitializeInternal()");
             sb.AppendLine("\t\t{");
             sb.AppendLine("\t\t\tDontDestroyOnLoad(gameObject);");
             sb.AppendLine("\t\t\t_" + assetVariableName + " = new " + assetName + "();");
@@ -154,7 +159,7 @@ namespace Editor.NisGab
 
             if (!Directory.Exists(targetDirectory)) { Directory.CreateDirectory(targetDirectory); }
 
-            string filePath = Path.Combine(targetDirectory, "InputEvent.cs");
+            string filePath = Path.Combine(targetDirectory, "EventBus.cs");
 
             File.WriteAllText(filePath, sb.ToString().Replace("\r\n", "\n"), Encoding.UTF8);
             AssetDatabase.Refresh();
