@@ -1,20 +1,19 @@
+using NisGab;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace NisGab.Example
+namespace Nisgab.Samples.SampleScene
 {
     public class PlayerController : MonoBehaviour
     {
         private void Awake()
         {
-            InputEvent.Player.Interact += PlayerOnInteract;
-            InputEvent.UI.Click += UIOnClick;
+            InputEventBus.Player.Interact += PlayerOnInteract;
         }
 
         private void OnDestroy()
         {
-            InputEvent.Player.Interact -= PlayerOnInteract;
-            InputEvent.UI.Click -= UIOnClick;
+            InputEventBus.Player.Interact -= PlayerOnInteract;
         }
 
         private void PlayerOnInteract(InputAction.CallbackContext context)
