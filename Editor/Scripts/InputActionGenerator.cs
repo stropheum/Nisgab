@@ -107,16 +107,22 @@ namespace Editor.NisGab
             foreach (InputActionMap inputActionMap in inputActionMaps)
             {
                 string mapName = inputActionMap.name;
-                sb.AppendLine("\t\tpublic void Enable" + mapName + "Input()");
+                sb.AppendLine("\t\tpublic static bool Enable" + mapName + "Input()");
                 sb.AppendLine("\t\t{");
-                sb.AppendLine("\t\t    if (_" + assetVariableName + "." + mapName + ".enabled) { return; }");
-                sb.AppendLine("\t\t    _" + assetVariableName + "." + mapName + ".Enable();");
+                sb.AppendLine("\t\t\tif (!IsValid()) { return false; }");
+                sb.AppendLine("\t\t\tif (Instance._" + assetVariableName + "." + mapName + ".enabled) { return false; }");
+                sb.AppendLine("\t\t\t");
+                sb.AppendLine("\t\t\tInstance._" + assetVariableName + "." + mapName + ".Enable();");
+                sb.AppendLine("\t\t\treturn true;");
                 sb.AppendLine("\t\t}");
                 sb.AppendLine("");
-                sb.AppendLine("\t\tpublic void Disable" + mapName + "Input()");
+                sb.AppendLine("\t\tpublic static bool Disable" + mapName + "Input()");
                 sb.AppendLine("\t\t{");
-                sb.AppendLine("\t\t\tif (!_" + assetVariableName + "." + mapName + ".enabled) { return; }");
-                sb.AppendLine("\t\t\t_" + assetVariableName + "." + mapName + ".Disable();");
+                sb.AppendLine("\t\t\tif (!IsValid()) { return false; }");
+                sb.AppendLine("\t\t\tif (!Instance._" + assetVariableName + "." + mapName + ".enabled) { return false; }");
+                sb.AppendLine("\t\t\t");
+                sb.AppendLine("\t\t\tInstance._" + assetVariableName + "." + mapName + ".Disable();");
+                sb.AppendLine("\t\t\treturn true;");
                 sb.AppendLine("\t\t}");
                 sb.AppendLine("");
             }
