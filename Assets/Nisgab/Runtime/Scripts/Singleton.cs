@@ -35,13 +35,5 @@ namespace NisGab
                 _instance = this as T;
             }
         }
-
-        protected virtual void OnApplicationQuit()
-        {
-            if (gameObject != null)
-            {
-                DestroyImmediate(gameObject);   
-            }
-        }
     }
 }

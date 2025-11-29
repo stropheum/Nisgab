@@ -21,7 +21,6 @@ namespace NisGab
 		{
 			base.Awake();
 			InitializeInternal();
-			UnityEngine.Application.quitting += OnApplicationQuit;
 		}
 
 		private void OnDestroy()
