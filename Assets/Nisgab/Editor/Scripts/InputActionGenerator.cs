@@ -95,7 +95,6 @@ namespace Editor.NisGab
             sb.AppendLine("\t\t{");
             sb.AppendLine("\t\t\tbase.Awake();");
             sb.AppendLine("\t\t\tInitializeInternal();");
-            sb.AppendLine("\t\t\tUnityEngine.Application.quitting += OnApplicationQuit;");
             sb.AppendLine("\t\t}");
             sb.AppendLine("");
             sb.AppendLine("\t\tprivate void OnDestroy()");
